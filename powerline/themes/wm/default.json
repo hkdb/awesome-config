@@ -1,0 +1,39 @@
+{
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.sys.cpu_load_percent",
+				"priority": 50
+			
+			{
+				"function": "powerlinemem.mem_usage.mem_usage",
+				"priority": 50,
+					"args": {
+					  "format": "MEM: %d%%"
+					}
+			},
+			{
+			    "function": "powerlinemem.mem_usage.mem_swap"
+			},
+			{
+				"function": "powerline.segments.common.bat.battery",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%r",
+					"istime": true
+				}
+			}
+		
+	}
+}
