@@ -32,6 +32,7 @@ Starter configurations for Awesome WM customized to my liking for Arch(-based) L
 
 ## CHANGE LOG
 
+- 07132021 - Added installation of ibus-rime
 - 07132021 - Added more customization & refined install
 - 04172021 - Initial commit
 

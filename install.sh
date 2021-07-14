@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install base dependencies
-sudo pacman --needed -S gvim git powerline nautilus-typeahead awesome-terminal-fonts powerline-fonts powerline-vim awesome nitrogen picom compton dmenu lxappearance xorg-xinput network-manager-applet yay shutter arc-icon-theme acpi ibus-rime alsa-utils pavucontrol blueman xscreensaver xsecurelock brave
+sudo pacman --needed -S gvim git powerline nautilus-typeahead awesome-terminal-fonts powerline-fonts powerline-vim awesome nitrogen picom compton dmenu lxappearance xorg-xinput network-manager-applet yay shutter arc-icon-theme acpi ibus-rime alsa-utils pavucontrol blueman xscreensaver xsecurelock brave ibus-rime
 
 # Install awesome config
 mkdir -p ~/.config/awesome
