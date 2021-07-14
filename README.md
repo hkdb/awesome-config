@@ -32,8 +32,25 @@ Starter configurations for Awesome WM customized to my liking for Arch(-based) L
 3. `./install.sh`
 4. Logout and login to awesome
 
+## External Monitors
+
+Create the following aliases:
+
+After connecting my external monitor~
+
+```
+alias extmon 'xrandr --output DP2 --auto && xrandr --output DP2 --rotate left && xrandr --output eDP1 --off'
+```
+
+Before disconnecting from my external monitor~
+
+```
+alias intmon 'xrandr --output eDP1 --auto && xrandr --output DP2 --off'
+```
+
 ## CHANGE LOG
 
+- 07132021 - Updated external monitor tip
 - 07132021 - Updated DEFAULTS in README
 - 07132021 - Added installation of ibus-rime
 - 07132021 - Added more customization & refined install
