@@ -5,17 +5,23 @@ maintianed by: @hkdb
 
 ## SUMMARY
 
-Starter configurations for Awesome WM customized to my liking tested against Arch Linux.
+Starter configurations for Awesome WM customized to my liking for Arch(-based) Linux.
 
 ## DEFAULTS
 
 - Terminal: Tilix
 - Browser: Brave
-- Editor: vim
-
-## PRE-REQUISITES
-
-- [hkdb/sysconfig](https://github.com/hkdb/sysconfig)
+- Editor: vim w/ customization
+- Screenshot: Shutter
+- Layout: Fair
+- Powerline: Weather, Date, Time
+- Widgets: Battery, Volume, CPU, RAM
+- Network: Network Manager Applet, Blueman
+- Input: ibus-damon, ibus-rime (pinyin) 
+- Auto Start: AeroFS, OverGrive, Nextcloud
+- Wallpaper: *nixtr
+- Shortcut: Media keys for volume control
+- Compositor: Compton
 
 ## INSTALL
 
@@ -26,7 +32,14 @@ Starter configurations for Awesome WM customized to my liking tested against Arc
 
 ## CHANGE LOG
 
+- 07132021 - Added more customization & refined install
 - 04172021 - Initial commit
+
+## SUPPORT US!
+
+If this repo was useful to you, feel free to buy us some coffees! :)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/3dfosi)
 
 ## DISCLAIMER
 

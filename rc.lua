@@ -19,6 +19,15 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+-- Volume
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+-- Battery
+local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
+-- CPU
+local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
+-- RAM
+local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -67,12 +76,12 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.tile.bottom,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
@@ -112,7 +121,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+-- mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -196,7 +205,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
+	filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons
     }
 
@@ -213,10 +222,19 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
-        { -- Right widgets
+        {   -- Right widgets
+            spacing = 5,
             layout = wibox.layout.fixed.horizontal,
+            cpu_widget(),
+            ram_widget(),
             wibox.widget.systray(),
-	    powerline_widget,
+            -- volume_widget(),
+            volume_widget{
+               widget_type = 'arc',
+               size = 14,
+            },
+            battery_widget(),
+            powerline_widget,
             -- mykeyboardlayout,
             -- mytextclock,
             s.mylayoutbox,
@@ -282,6 +300,10 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "4", function () awful.spawn("shutter -f") end,
+              {description = "scareenshot (full)", group = "launcher"}),
+    awful.key({ modkey,           }, "Escape", function () awful.spawn('env XSECURELOCK_SAVER=saver_xscreensaver xsecurelock') end,
+              {description = "lock screen", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -333,7 +355,12 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- Volume
+    awful.key({ modkey }, "XF86AudioRaiseVolume", function() volume_widget:inc() end),
+    awful.key({ modkey }, "XF86AudioLowerVolume", function() volume_widget:dec() end),
+    awful.key({ modkey }, "XF86AudioMute", function() volume_widget:toggle() end)
 )
 
 clientkeys = gears.table.join(
@@ -443,6 +470,12 @@ clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
     end)
 )
+
+-- Set Audio Keys
+
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume",function () volume("up", tb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume",function  () volume("down", tb_volume) end))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute",function  () volume("mute", tb_volume) end))
 
 -- Set keys
 root.keys(globalkeys)
@@ -575,7 +608,11 @@ beautiful.useless_gap = 2
 
 -- Autostart Applications
 awful.spawn.with_shell("compton")
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)"')
+awful.spawn.with_shell("xinput set-prop 'Raydium Corporation Raydium Touch System' 'libinput Tapping Enabled' 1")
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x ibus-daemon > /dev/null || (/usr/bin/ibus-daemon -d)"')
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x aerofsd > /dev/null || (/opt/aerofs/aerofs &)"')
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x overgrive > /dev/null || (python3 /opt/thefanclub/overgrive/overgrive &)"')
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x nextcloud > /dev/null || (nextcloud &)"')
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x blueman-applet > /dev/null || (blueman-adapters &)"')
 awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)")
-awful.spawn.with_shell("xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1")
-awful.spawn.with_shell("pgrep -u $USER -x ibus-daemon > /dev/null || (ibus-daemon &)")
