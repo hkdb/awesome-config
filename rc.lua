@@ -615,4 +615,5 @@ awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x aerofsd > /dev/null || (
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x overgrive > /dev/null || (python3 /opt/thefanclub/overgrive/overgrive &)"')
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x nextcloud > /dev/null || (nextcloud &)"')
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x blueman-applet > /dev/null || (blueman-adapters &)"')
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -f /usr/sbin/python /usr/bin/caffeine-indicator > /dev/null || (/usr/bin/caffeine-indicator &)"')
 awful.spawn.with_shell("nitrogen --restore")
