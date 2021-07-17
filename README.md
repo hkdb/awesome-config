@@ -29,6 +29,7 @@ v2:
 
 - Removed battery widget
 - Added more powerline segments to replace battery widget and option to remove cpu and ram widgets/applets
+- Added plank to easily launch AppImages that dmenu can't seem to find
 - Removed auto-launch of apps that are specific to hkdb (Nextcloud, etc)
 
 ![screenshot](awesome-config-ss-v2.png)
@@ -58,6 +59,7 @@ alias intmon 'xrandr --output eDP1 --auto && xrandr --output DP2 --off'
 
 ## CHANGE LOG
 
+- 07162021 - Updated v2 description
 - 07162021 - Added v2 screenshot
 - 07162021 - Fixed powerline folder 
 - 07162021 - Fixed install script
