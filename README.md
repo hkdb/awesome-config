@@ -25,6 +25,12 @@ Starter configurations for Awesome WM customized to my liking for Arch(-based) L
 - Screensaver: xscreensaver, caffeine-indicator
 - Screen Lock: xsecurelock
 
+v2:
+
+- Removed battery widget
+- Added more powerline segments to replace battery widget and option to remove cpu and ram widgets/applets
+- Removed auto-launch of apps that are specific to hkdb (Nextcloud, etc)
+
 ## INSTALL
 
 1. `git clone https://github.com/hkdb/awesome-config.git`
@@ -49,7 +55,7 @@ alias intmon 'xrandr --output eDP1 --auto && xrandr --output DP2 --off'
 ```
 
 ## CHANGE LOG
-
+- 07162021 - v2: using more powerline and less widgets + plank
 - 07142021 - Added caffeine-indicator
 - 07132021 - Updated external monitor tip
 - 07132021 - Updated DEFAULTS in README

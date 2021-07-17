@@ -22,7 +22,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Volume
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 -- Battery
-local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
+-- local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 -- CPU
 local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
 -- RAM
@@ -233,7 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
                widget_type = 'arc',
                size = 14,
             },
-            battery_widget(),
+            -- battery_widget(),
             powerline_widget,
             -- mykeyboardlayout,
             -- mytextclock,
@@ -300,7 +300,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "4", function () awful.spawn("shutter -f") end,
+    awful.key({ 'Mod1',           }, "4", function () awful.spawn("shutter -f") end,
               {description = "scareenshot (full)", group = "launcher"}),
     awful.key({ modkey,           }, "Escape", function () awful.spawn('env XSECURELOCK_SAVER=saver_xscreensaver xsecurelock') end,
               {description = "lock screen", group = "launcher"}),
@@ -308,6 +308,11 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
+
+    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
+        {description = "+10%", group = "hotkeys"}),
+    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
+        {description = "-10%", group = "hotkeys"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -609,11 +614,8 @@ beautiful.useless_gap = 2
 -- Autostart Applications
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)"')
-awful.spawn.with_shell("xinput set-prop 'Raydium Corporation Raydium Touch System' 'libinput Tapping Enabled' 1")
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x ibus-daemon > /dev/null || (/usr/bin/ibus-daemon -d)"')
-awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x aerofsd > /dev/null || (/opt/aerofs/aerofs &)"')
-awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x overgrive > /dev/null || (python3 /opt/thefanclub/overgrive/overgrive &)"')
-awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x nextcloud > /dev/null || (nextcloud &)"')
 awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x blueman-applet > /dev/null || (blueman-adapters &)"')
-awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -f /usr/sbin/python /usr/bin/caffeine-indicator > /dev/null || (/usr/bin/caffeine-indicator &)"')
+awful.spawn.with_shell('pgrep -u $USER -f "/usr/bin/python3 /usr/bin/caffeine-indicator" > /dev/null || (caffeine-indicator &)')
 awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell('/bin/bash -c "pgrep -u $USER -x plank > /dev/null || (plank &)"')
