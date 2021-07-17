@@ -64,7 +64,11 @@ cp -R plank /home/$USER/.config/
 # Install awesome config
 echo -e "\nInstalling Awesome config...\n"
 mkdir -p ~/.config/awesome
-cp rc.lua ~/.config/awesome
+if [[ distro == "Arch" ]]; then
+   cp arch.rc.lua ~/.config/awesome/rc.lua
+else
+   cp deb.rc.lua ~/.config/awesome/rc.lua
+fi
 
 # Install awesome wm widgets
 echo -e "\nInstalling Awesome widgets...\n"
