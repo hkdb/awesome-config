@@ -5,7 +5,7 @@ maintianed by: @hkdb
 
 ## SUMMARY
 
-Starter configurations for Awesome WM customized to my liking for Arch(-based) Linux.
+Starter configurations for Awesome WM customized to my liking for Arch/Debian/Ubuntu(-based) Linux.
 
 ## DEFAULTS
 
@@ -31,6 +31,7 @@ v2:
 - Added more powerline segments to replace battery widget and option to remove cpu and ram widgets/applets
 - Added plank to easily launch AppImages that dmenu can't seem to find
 - Removed auto-launch of apps that are specific to hkdb (Nextcloud, etc)
+- Added Debian/Ubuntu based distro support and tested on Pop 21.04
 
 ![screenshot](awesome-config-ss-v2.png)
 
@@ -59,6 +60,7 @@ alias intmon 'xrandr --output eDP1 --auto && xrandr --output DP2 --off'
 
 ## CHANGE LOG
 
+- 07162021 - Updated v2 description (deb/ubuntu support)
 - 07162021 - Updated v2 description
 - 07162021 - Added v2 screenshot
 - 07162021 - Fixed powerline folder 
