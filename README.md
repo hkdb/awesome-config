@@ -55,6 +55,8 @@ alias intmon 'xrandr --output eDP1 --auto && xrandr --output DP2 --off'
 ```
 
 ## CHANGE LOG
+
+- 07162021 - Fixed powerline folder 
 - 07162021 - Fixed install script
 - 07162021 - v2: using more powerline and less widgets + plank
 - 07142021 - Added caffeine-indicator
